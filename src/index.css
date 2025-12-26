@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,48 +6,78 @@
 
 @layer base {
   :root {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 96%;
+    --background: 0 0% 97%;
+    --foreground: 0 0% 8%;
 
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 96%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 160 100% 50%;
-    --primary-foreground: 0 0% 2%;
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 97%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 96%;
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 160 100% 50%;
-    --accent-foreground: 0 0% 2%;
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 160 100% 50%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 0 0% 8%;
 
     --radius: 0rem;
 
     /* Custom tokens */
-    --font-display: 'Space Grotesk', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-mono: 'IBM Plex Mono', monospace;
     
-    --glow-primary: 0 0 60px hsl(160 100% 50% / 0.3);
-    --glow-primary-intense: 0 0 100px hsl(160 100% 50% / 0.5);
+    --dot-color: 0 0% 75%;
+    --dot-size: 1px;
+    --dot-spacing: 24px;
 
-    --gradient-hero: linear-gradient(180deg, hsl(0 0% 2%) 0%, hsl(0 0% 4%) 50%, hsl(0 0% 2%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 8%) 0%, hsl(0 0% 4%) 100%);
-    --gradient-text: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 70%) 100%);
+    --shadow-card: 0 4px 20px -2px hsl(0 0% 0% / 0.08);
+    --shadow-card-hover: 0 12px 40px -4px hsl(0 0% 0% / 0.15);
 
-    --line-color: 0 0% 20%;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dark {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 94%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 94%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 94%;
+
+    --primary: 0 0% 94%;
+    --primary-foreground: 0 0% 6%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 94%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 14%;
+    --accent-foreground: 0 0% 94%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 94%;
+
+    --dot-color: 0 0% 25%;
   }
 }
 
@@ -56,56 +86,60 @@
     @apply border-border;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
   }
 
-  ::selection {
-    background: hsl(var(--primary) / 0.3);
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 }
 
 @layer components {
-  .grid-background {
-    background-image: 
-      linear-gradient(hsl(var(--line-color)) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--line-color)) 1px, transparent 1px);
-    background-size: 60px 60px;
+  .dotted-background {
+    background-image: radial-gradient(
+      circle,
+      hsl(var(--dot-color)) var(--dot-size),
+      transparent var(--dot-size)
+    );
+    background-size: var(--dot-spacing) var(--dot-spacing);
     background-position: center center;
   }
 
-  .glow-text {
-    text-shadow: var(--glow-primary);
+  .corner-bracket {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: hsl(var(--foreground) / 0.3);
   }
 
-  .glow-box {
-    box-shadow: var(--glow-primary);
+  .corner-bracket-tl {
+    top: 24px;
+    left: 24px;
+    border-top-width: 1px;
+    border-left-width: 1px;
   }
 
-  .glow-box-intense {
-    box-shadow: var(--glow-primary-intense);
+  .corner-bracket-tr {
+    top: 24px;
+    right: 24px;
+    border-top-width: 1px;
+    border-right-width: 1px;
   }
 
-  .gradient-text {
-    background: var(--gradient-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .corner-bracket-bl {
+    bottom: 24px;
+    left: 24px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
   }
 
-  .border-glow {
-    border-color: hsl(var(--primary) / 0.5);
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.2), inset 0 0 20px hsl(var(--primary) / 0.05);
-  }
-
-  .section-line {
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.5) 50%, transparent 100%);
+  .corner-bracket-br {
+    bottom: 24px;
+    right: 24px;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
   }
 }
 
@@ -120,9 +154,5 @@
 
   .text-balance {
     text-wrap: balance;
-  }
-
-  .animate-pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }
