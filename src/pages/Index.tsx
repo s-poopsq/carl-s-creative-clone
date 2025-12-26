@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import CornerBrackets from '@/components/CornerBrackets';
 import { Button } from '@/components/ui/button';
 import logoKalasalingam from '@/assets/logo-kalasalingam.png';
@@ -16,11 +17,21 @@ const Index = () => {
     <main className="min-h-screen dotted-background relative overflow-hidden">
       <CornerBrackets />
       
+      {/* Navigation */}
+      <nav className="absolute top-8 right-8 z-10">
+        <Link 
+          to="/resources" 
+          className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
+        >
+          Resources →
+        </Link>
+      </nav>
+
       {/* Logos */}
-      <div className="absolute top-8 left-0 right-0 flex justify-center items-center gap-4 px-6 z-10">
-        <img src={logoKalasalingam} alt="Kalasalingam Academy" className="h-16 md:h-20 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
-        <span className="text-foreground/60 text-2xl md:text-3xl font-light">×</span>
-        <img src={logoEnexus} alt="E-Nexus" className="h-16 md:h-20 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
+      <div className="absolute top-8 left-8 flex items-center gap-4 z-10">
+        <img src={logoKalasalingam} alt="Kalasalingam Academy" className="h-12 md:h-16 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
+        <span className="text-foreground/60 text-xl md:text-2xl font-light">×</span>
+        <img src={logoEnexus} alt="E-Nexus" className="h-12 md:h-16 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
       </div>
 
       {/* Hero Section */}
