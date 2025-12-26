@@ -17,9 +17,10 @@ const Index = () => {
       <CornerBrackets />
       
       {/* Logos */}
-      <div className="absolute top-8 left-0 right-0 flex justify-center items-center gap-8 px-6 z-10">
-        <img src={logoKalasalingam} alt="Kalasalingam Academy" className="h-16 md:h-20 object-contain" />
-        <img src={logoEnexus} alt="E-Nexus" className="h-16 md:h-20 object-contain" />
+      <div className="absolute top-8 left-0 right-0 flex justify-center items-center gap-4 px-6 z-10">
+        <img src={logoKalasalingam} alt="Kalasalingam Academy" className="h-16 md:h-20 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
+        <span className="text-foreground/60 text-2xl md:text-3xl font-light">×</span>
+        <img src={logoEnexus} alt="E-Nexus" className="h-16 md:h-20 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
       </div>
 
       {/* Hero Section */}
