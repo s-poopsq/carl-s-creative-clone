@@ -1,5 +1,7 @@
 import CornerBrackets from '@/components/CornerBrackets';
 import { Button } from '@/components/ui/button';
+import logoKalasalingam from '@/assets/logo-kalasalingam.png';
+import logoEnexus from '@/assets/logo-enexus.png';
 
 const domains = [
   { title: 'Artificial Intelligence', desc: 'Machines that reason. Humans who decide.' },
@@ -14,6 +16,12 @@ const Index = () => {
     <main className="min-h-screen dotted-background relative overflow-hidden">
       <CornerBrackets />
       
+      {/* Logos */}
+      <div className="absolute top-8 left-0 right-0 flex justify-center items-center gap-8 px-6 z-10">
+        <img src={logoKalasalingam} alt="Kalasalingam Academy" className="h-16 md:h-20 object-contain" />
+        <img src={logoEnexus} alt="E-Nexus" className="h-16 md:h-20 object-contain" />
+      </div>
+
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
         <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-light tracking-tight text-foreground mb-6 animate-fade-in">
