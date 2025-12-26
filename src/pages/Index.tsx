@@ -18,12 +18,30 @@ const Index = () => {
       <CornerBrackets />
       
       {/* Navigation */}
-      <nav className="absolute top-8 right-8 z-10">
+      <nav className="absolute top-8 right-8 z-10 flex items-center gap-2">
         <Link 
           to="/resources" 
           className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
         >
-          Resources →
+          Resources
+        </Link>
+        <Link 
+          to="/faq" 
+          className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
+        >
+          FAQ
+        </Link>
+        <Link 
+          to="/ethics" 
+          className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
+        >
+          Ethics
+        </Link>
+        <Link 
+          to="/contact" 
+          className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
+        >
+          Contact
         </Link>
       </nav>
 
