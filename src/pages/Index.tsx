@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import CornerBrackets from '@/components/CornerBrackets';
 import { Button } from '@/components/ui/button';
+import { PageTransition, ScrollReveal, MicroInteraction, AnimatedText } from '@/components/animations';
 import logoKalasalingam from '@/assets/logo-kalasalingam.png';
 import logoEnexus from '@/assets/logo-enexus.png';
 
@@ -14,211 +16,297 @@ const domains = [
 
 const Index = () => {
   return (
-    <main className="min-h-screen dotted-background relative overflow-hidden">
-      <CornerBrackets />
-      
-      {/* Navigation */}
-      <nav className="absolute top-8 right-8 z-10 flex items-center gap-2">
-        <Link 
-          to="/resources" 
-          className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
+    <PageTransition>
+      <main className="min-h-screen dotted-background relative overflow-hidden">
+        <CornerBrackets />
+        
+        {/* Navigation */}
+        <motion.nav 
+          className="absolute top-8 right-8 z-10 flex items-center gap-2"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
         >
-          Resources
-        </Link>
-        <Link 
-          to="/faq" 
-          className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
-        >
-          FAQ
-        </Link>
-        <Link 
-          to="/ethics" 
-          className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
-        >
-          Ethics
-        </Link>
-        <Link 
-          to="/contact" 
-          className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
-        >
-          Contact
-        </Link>
-      </nav>
-
-      {/* Logos */}
-      <div className="absolute top-8 left-8 flex items-center gap-4 z-10">
-        <img src={logoKalasalingam} alt="Kalasalingam Academy" className="h-12 md:h-16 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
-        <span className="text-foreground/60 text-xl md:text-2xl font-light">×</span>
-        <img src={logoEnexus} alt="E-Nexus" className="h-12 md:h-16 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
-      </div>
-
-      {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-        <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-light tracking-tight text-foreground mb-6 animate-fade-in">
-          E-NEXUS
-        </h1>
-        <p className="font-display text-2xl md:text-3xl lg:text-4xl italic text-foreground/80 mb-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-          Where Ideas Become Systems
-        </p>
-        <p className="font-mono text-sm md:text-base text-muted-foreground max-w-xl mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          We don't prepare students for the future.<br />
-          We teach them to design it.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <Button variant="default" size="lg" className="font-mono text-sm tracking-wide">
-            Enter the Ecosystem
-          </Button>
-          <Button variant="outline" size="lg" className="font-mono text-sm tracking-wide">
-            Join the Builders
-          </Button>
-        </div>
-      </section>
-
-      {/* The Paradox */}
-      <section className="py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-12">
-            The Paradox
-          </h2>
-          <p className="font-mono text-lg md:text-xl text-foreground/90 leading-relaxed mb-8">
-            Education teaches answers.<br />
-            Progress begins with questions.
-          </p>
-          <p className="font-mono text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            E-Nexus exists in the space between knowing and building —<br />
-            where curiosity becomes execution,<br />
-            and learning becomes leverage.
-          </p>
-        </div>
-      </section>
-
-      {/* What is E-Nexus */}
-      <section className="py-32 px-6 bg-secondary/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-12">
-            What is E-Nexus?
-          </h2>
-          <p className="font-mono text-lg text-foreground/80 mb-8">
-            Not a club.<br />
-            Not a classroom.
-          </p>
-          <p className="font-mono text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-12">
-            E-Nexus is a convergence of disciplines —<br />
-            technology, design, logic, ethics, and entrepreneurship —<br />
-            built for those who refuse to specialize too early<br />
-            and refuse to think too small.
-          </p>
-          <p className="font-display text-2xl md:text-3xl italic text-foreground">
-            We cultivate polymaths, not placeholders.
-          </p>
-        </div>
-      </section>
-
-      {/* Domains of Thought & Action */}
-      <section className="py-32 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="font-display text-4xl md:text-5xl font-light text-foreground text-center mb-16">
-            Domains of Thought & Action
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {domains.map((domain, index) => (
-              <div 
-                key={domain.title}
-                className="p-8 border border-border bg-card hover:shadow-card transition-all duration-300 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+          {[
+            { to: '/resources', label: 'Resources' },
+            { to: '/faq', label: 'FAQ' },
+            { to: '/ethics', label: 'Ethics' },
+            { to: '/contact', label: 'Contact' },
+          ].map((item, index) => (
+            <MicroInteraction key={item.to} type="tap-shrink">
+              <Link 
+                to={item.to} 
+                className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors border border-border px-4 py-2 bg-card/50 backdrop-blur-sm hover:bg-card"
               >
-                <h3 className="font-display text-xl font-medium text-foreground mb-3">
-                  {domain.title}
-                </h3>
-                <p className="font-mono text-sm text-muted-foreground">
-                  {domain.desc}
-                </p>
+                {item.label}
+              </Link>
+            </MicroInteraction>
+          ))}
+        </motion.nav>
+
+        {/* Logos */}
+        <motion.div 
+          className="absolute top-8 left-8 flex items-center gap-4 z-10"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <img src={logoKalasalingam} alt="Kalasalingam Academy" className="h-12 md:h-16 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
+          <span className="text-foreground/60 text-xl md:text-2xl font-light">×</span>
+          <img src={logoEnexus} alt="E-Nexus" className="h-12 md:h-16 object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" />
+        </motion.div>
+
+        {/* Hero Section */}
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
+          <motion.h1 
+            className="font-display text-6xl md:text-8xl lg:text-9xl font-light tracking-tight text-foreground mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <AnimatedText type="chars" delay={0.2}>E-NEXUS</AnimatedText>
+          </motion.h1>
+          <motion.p 
+            className="font-display text-2xl md:text-3xl lg:text-4xl italic text-foreground/80 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            Where Ideas Become Systems
+          </motion.p>
+          <motion.p 
+            className="font-mono text-sm md:text-base text-muted-foreground max-w-xl mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.6 }}
+          >
+            We don't prepare students for the future.<br />
+            We teach them to design it.
+          </motion.p>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+          >
+            <MicroInteraction type="magnetic">
+              <Button variant="default" size="lg" className="font-mono text-sm tracking-wide">
+                Enter the Ecosystem
+              </Button>
+            </MicroInteraction>
+            <MicroInteraction type="magnetic">
+              <Button variant="outline" size="lg" className="font-mono text-sm tracking-wide">
+                Join the Builders
+              </Button>
+            </MicroInteraction>
+          </motion.div>
+          
+          {/* Scroll indicator */}
+          <motion.div 
+            className="absolute bottom-12 left-1/2 -translate-x-1/2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, y: [0, 10, 0] }}
+            transition={{ delay: 2, duration: 1.5, repeat: Infinity }}
+          >
+            <div className="w-6 h-10 border border-foreground/30 rounded-full flex justify-center pt-2">
+              <motion.div 
+                className="w-1 h-2 bg-foreground/50 rounded-full"
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </div>
+          </motion.div>
+        </section>
+
+        {/* The Paradox */}
+        <section className="py-32 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-12">
+                The Paradox
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <p className="font-mono text-lg md:text-xl text-foreground/90 leading-relaxed mb-8">
+                Education teaches answers.<br />
+                Progress begins with questions.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2}>
+              <p className="font-mono text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                E-Nexus exists in the space between knowing and building —<br />
+                where curiosity becomes execution,<br />
+                and learning becomes leverage.
+              </p>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* What is E-Nexus */}
+        <section className="py-32 px-6 bg-secondary/30">
+          <div className="max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-12">
+                What is E-Nexus?
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <p className="font-mono text-lg text-foreground/80 mb-8">
+                Not a club.<br />
+                Not a classroom.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2}>
+              <p className="font-mono text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-12">
+                E-Nexus is a convergence of disciplines —<br />
+                technology, design, logic, ethics, and entrepreneurship —<br />
+                built for those who refuse to specialize too early<br />
+                and refuse to think too small.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.3}>
+              <p className="font-display text-2xl md:text-3xl italic text-foreground">
+                We cultivate polymaths, not placeholders.
+              </p>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Domains of Thought & Action */}
+        <section className="py-32 px-6">
+          <div className="max-w-5xl mx-auto">
+            <ScrollReveal>
+              <h2 className="font-display text-4xl md:text-5xl font-light text-foreground text-center mb-16">
+                Domains of Thought & Action
+              </h2>
+            </ScrollReveal>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {domains.map((domain, index) => (
+                <ScrollReveal key={domain.title} delay={index * 0.1}>
+                  <MicroInteraction type="hover-lift" className="h-full">
+                    <div className="p-8 border border-border bg-card h-full">
+                      <h3 className="font-display text-xl font-medium text-foreground mb-3">
+                        {domain.title}
+                      </h3>
+                      <p className="font-mono text-sm text-muted-foreground">
+                        {domain.desc}
+                      </p>
+                    </div>
+                  </MicroInteraction>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* What We Practice */}
+        <section className="py-32 px-6 bg-secondary/30">
+          <div className="max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-12">
+                What We Practice
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <p className="font-mono text-lg text-foreground/90 leading-loose mb-12">
+                Building before believing.<br />
+                Testing before teaching.<br />
+                Execution before explanation.
+              </p>
+            </ScrollReveal>
+            <div className="flex flex-wrap justify-center gap-4">
+              {['Hackathons', 'Bootcamps', 'Startup Sprints', 'Research', 'Social Impact'].map((item, index) => (
+                <ScrollReveal key={item} delay={0.2 + index * 0.1} direction="none">
+                  <MicroInteraction type="tap-shrink">
+                    <span className="px-6 py-3 border border-border bg-card font-mono text-sm text-foreground inline-block">
+                      {item}
+                    </span>
+                  </MicroInteraction>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why E-Nexus Exists */}
+        <section className="py-32 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-12">
+                Why E-Nexus Exists
+              </h2>
+            </ScrollReveal>
+            <div className="space-y-6 font-mono text-base md:text-lg text-muted-foreground">
+              <ScrollReveal delay={0.1} direction="left">
+                <p>Because knowledge without application is fragile.</p>
+              </ScrollReveal>
+              <ScrollReveal delay={0.2} direction="right">
+                <p>Because specialization without perspective is dangerous.</p>
+              </ScrollReveal>
+              <ScrollReveal delay={0.3} direction="left">
+                <p>Because the future belongs to those who connect dots others never see.</p>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        {/* Leadership */}
+        <section className="py-32 px-6 bg-secondary/30">
+          <div className="max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-8">
+                Leadership
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <p className="font-mono text-lg text-muted-foreground">
+                Not authorities.<br />
+                Architects.
+              </p>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* The Invitation */}
+        <section className="py-32 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-8">
+                The Invitation
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <p className="font-display text-2xl md:text-3xl italic text-foreground/80 mb-12">
+                Build what doesn't exist yet.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <MicroInteraction type="magnetic">
+                  <Button variant="default" size="lg" className="font-mono text-sm tracking-wide">
+                    Join E-Nexus
+                  </Button>
+                </MicroInteraction>
+                <MicroInteraction type="magnetic">
+                  <Button variant="outline" size="lg" className="font-mono text-sm tracking-wide">
+                    Collaborate
+                  </Button>
+                </MicroInteraction>
               </div>
-            ))}
+            </ScrollReveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* What We Practice */}
-      <section className="py-32 px-6 bg-secondary/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-12">
-            What We Practice
-          </h2>
-          <p className="font-mono text-lg text-foreground/90 leading-loose mb-12">
-            Building before believing.<br />
-            Testing before teaching.<br />
-            Execution before explanation.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {['Hackathons', 'Bootcamps', 'Startup Sprints', 'Research', 'Social Impact'].map((item) => (
-              <span 
-                key={item}
-                className="px-6 py-3 border border-border bg-card font-mono text-sm text-foreground"
-              >
-                {item}
-              </span>
-            ))}
+        {/* Footer */}
+        <footer className="py-12 px-6 border-t border-border">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="font-mono text-xs text-muted-foreground">
+              © {new Date().getFullYear()} E-Nexus. All rights reserved.
+            </p>
           </div>
-        </div>
-      </section>
-
-      {/* Why E-Nexus Exists */}
-      <section className="py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-12">
-            Why E-Nexus Exists
-          </h2>
-          <div className="space-y-6 font-mono text-base md:text-lg text-muted-foreground">
-            <p>Because knowledge without application is fragile.</p>
-            <p>Because specialization without perspective is dangerous.</p>
-            <p>Because the future belongs to those who connect dots others never see.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership */}
-      <section className="py-32 px-6 bg-secondary/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-8">
-            Leadership
-          </h2>
-          <p className="font-mono text-lg text-muted-foreground">
-            Not authorities.<br />
-            Architects.
-          </p>
-        </div>
-      </section>
-
-      {/* The Invitation */}
-      <section className="py-32 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-4xl md:text-5xl font-light text-foreground mb-8">
-            The Invitation
-          </h2>
-          <p className="font-display text-2xl md:text-3xl italic text-foreground/80 mb-12">
-            Build what doesn't exist yet.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="default" size="lg" className="font-mono text-sm tracking-wide">
-              Join E-Nexus
-            </Button>
-            <Button variant="outline" size="lg" className="font-mono text-sm tracking-wide">
-              Collaborate
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-border">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="font-mono text-xs text-muted-foreground">
-            © {new Date().getFullYear()} E-Nexus. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
+    </PageTransition>
   );
 };
 
