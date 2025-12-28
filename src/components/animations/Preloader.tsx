@@ -1,11 +1,17 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import logoKalasalingam from '@/assets/logo-kalasalingam.png';
+import logoEnexus from '@/assets/logo-enexus.png';
 
 const Preloader = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    const duration = 5000; // 5 seconds
+    const interval = 50;
+    const increment = (100 / duration) * interval;
+
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -13,9 +19,9 @@ const Preloader = () => {
           setTimeout(() => setIsLoading(false), 300);
           return 100;
         }
-        return prev + Math.random() * 15;
+        return Math.min(prev + increment, 100);
       });
-    }, 100);
+    }, interval);
 
     return () => clearInterval(timer);
   }, []);
@@ -32,33 +38,43 @@ const Preloader = () => {
           }}
         >
           <div className="flex flex-col items-center gap-8">
-            {/* Logo Animation */}
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="relative"
-            >
-              <motion.h1
-                className="font-display text-5xl md:text-7xl font-light tracking-tight text-foreground"
-                initial={{ letterSpacing: '0.5em', opacity: 0 }}
-                animate={{ letterSpacing: '0.05em', opacity: 1 }}
-                transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              >
-                E-NEXUS
-              </motion.h1>
-              
-              {/* Animated underline */}
-              <motion.div
-                className="absolute -bottom-2 left-0 h-[1px] bg-foreground/40"
-                initial={{ width: '0%' }}
-                animate={{ width: '100%' }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            {/* Logos */}
+            <div className="flex items-center gap-8 md:gap-12">
+              <motion.img
+                src={logoKalasalingam}
+                alt="Kalasalingam University"
+                className="h-20 md:h-28 w-auto object-contain"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               />
+              <motion.img
+                src={logoEnexus}
+                alt="E-NEXUS"
+                className="h-20 md:h-28 w-auto object-contain"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              />
+            </div>
+
+            {/* Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="text-center"
+            >
+              <h1 className="font-display text-3xl md:text-5xl font-light tracking-tight text-foreground">
+                E-NEXUS
+              </h1>
+              <p className="text-sm md:text-base text-muted-foreground mt-2">
+                KARE's Innovation & Startup Hub
+              </p>
             </motion.div>
 
             {/* Progress bar */}
-            <div className="w-48 h-[1px] bg-border overflow-hidden">
+            <div className="w-48 h-[2px] bg-border overflow-hidden rounded-full">
               <motion.div
                 className="h-full bg-foreground"
                 initial={{ width: '0%' }}
@@ -72,9 +88,9 @@ const Preloader = () => {
               className="font-mono text-xs text-muted-foreground tracking-widest uppercase"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.3 }}
             >
-              {progress < 100 ? 'Initializing...' : 'Ready'}
+              {progress < 100 ? 'Loading...' : 'Ready'}
             </motion.p>
 
             {/* Decorative corners */}
