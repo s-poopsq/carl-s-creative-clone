@@ -3,6 +3,16 @@ import { PageTransition, ScrollReveal, MicroInteraction } from '@/components/ani
 import Navbar from '@/components/Navbar';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
+// Import volunteer photos
+import akshayaPhoto from '@/assets/members/akshaya.jpg';
+import sriramPhoto from '@/assets/members/sriram.jpg';
+import srinivasanPhoto from '@/assets/members/srinivasan.jpg';
+import madhumithaPhoto from '@/assets/members/madhumitha.jpg';
+import ramyabharathiPhoto from '@/assets/members/ramyabharathi.jpg';
+import sabarivishwaPhoto from '@/assets/members/sabarivishwa.jpg';
+import jeyasobikaPhoto from '@/assets/members/jeyasobika.jpg';
+import ramkumarPhoto from '@/assets/members/ramkumar.jpg';
+
 interface Member {
   id: number;
   name: string;
@@ -58,6 +68,74 @@ const members: Member[] = [
   },
 ];
 
+// Volunteers data
+const volunteers: Member[] = [
+  {
+    id: 1,
+    name: 'G. Akshaya',
+    position: 'Volunteer',
+    year: '9923011006',
+    department: 'BTech Food Technology',
+    photo: akshayaPhoto,
+  },
+  {
+    id: 2,
+    name: 'M. Sriram',
+    position: 'Volunteer',
+    year: '9923011016',
+    department: 'BTech Food Technology',
+    photo: sriramPhoto,
+  },
+  {
+    id: 3,
+    name: 'Srinivasan S.P. Rajeswari S R',
+    position: 'Volunteer',
+    year: '9923011015',
+    department: 'BTech Food Technology',
+    photo: srinivasanPhoto,
+  },
+  {
+    id: 4,
+    name: 'M. Madhu Mitha',
+    position: 'Volunteer',
+    year: '9923011020',
+    department: 'BTech Food Technology',
+    photo: madhumithaPhoto,
+  },
+  {
+    id: 5,
+    name: 'S. Ramya Bharathi',
+    position: 'Volunteer',
+    year: '9923011027',
+    department: 'BTech Food Technology',
+    photo: ramyabharathiPhoto,
+  },
+  {
+    id: 6,
+    name: 'Sabari Vishwa',
+    position: 'Volunteer',
+    year: '9923011028',
+    department: 'BTech Food Technology',
+    photo: sabarivishwaPhoto,
+  },
+  {
+    id: 7,
+    name: 'J. Jeya Sobika',
+    position: 'Volunteer',
+    year: '9923011032',
+    department: 'BTech Food Technology',
+    photo: jeyasobikaPhoto,
+  },
+  {
+    id: 8,
+    name: 'T. Ram Kumar',
+    position: 'Volunteer',
+    year: '9923001057',
+    department: 'BTech Biotechnology',
+    photo: ramkumarPhoto,
+  },
+];
+
 const MemberCard = ({ member, index }: { member: Member; index: number }) => {
   const initials = member.name
     .split(' ')
@@ -83,7 +161,7 @@ const MemberCard = ({ member, index }: { member: Member; index: number }) => {
             {/* Photo */}
             <Avatar className="w-20 h-20 sm:w-24 sm:h-24 mb-4 border-2 border-border group-hover:border-primary transition-colors">
               {member.photo ? (
-                <AvatarImage src={member.photo} alt={member.name} />
+                <AvatarImage src={member.photo} alt={member.name} className="object-cover" />
               ) : null}
               <AvatarFallback className="bg-secondary text-foreground font-display text-xl sm:text-2xl">
                 {initials}
@@ -203,8 +281,28 @@ const Members = () => {
           </div>
         </section>
 
-        {/* Join CTA */}
+        {/* Volunteers Section */}
         <section className="py-16 sm:py-24 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-foreground text-center mb-4">
+                Volunteers
+              </h2>
+              <p className="font-mono text-sm sm:text-base text-muted-foreground text-center mb-12 sm:mb-16">
+                The paradox of service: to give is to receive infinitely more.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+              {volunteers.map((member, index) => (
+                <MemberCard key={member.id} member={member} index={index} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Join CTA */}
+        <section className="py-16 sm:py-24 px-4 sm:px-6 bg-secondary/30">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal>
               <h2 className="font-display text-3xl sm:text-4xl font-light text-foreground mb-4">
